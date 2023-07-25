@@ -21,6 +21,12 @@ teamOneUp.addEventListener('click', function() {
     h4.textContent = `Serves: ${team1[team1Index % 2]}`;
 });
 
+const teamOneDown = document.querySelector('#teamOneDown');
+teamOneDown.addEventListener('click', function() {
+    countOne--;
+    ScoreDispOne.textContent = `${countOne}`;
+});
+
 // Team two score
 const teamTwoUp = document.querySelector('#teamTwoUp');
 let countTwo = 0;

@@ -1,0 +1,12 @@
+#ScoreDispOne {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.container-fluid {
+    max-height: 100vh;
+    overflow: auto;
+}
