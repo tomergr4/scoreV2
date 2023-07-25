@@ -1,8 +1,8 @@
 //hide before start
-var beforeStart = document.querySelectorAll('.beforeStart');
-beforeStart.forEach(function(beforeStart) {
-    beforeStart.style.display = 'none';
-});
+// var beforeStart = document.querySelectorAll('.beforeStart');
+// beforeStart.forEach(function(beforeStart) {
+//     beforeStart.style.display = 'none';
+// });
 
 let changedServes = false;
 
@@ -11,7 +11,8 @@ const ScoreDispOne = document.querySelector('#ScoreDispOne');
 const ScoreDispTwo = document.querySelector('#ScoreDispTwo');
 
 const h3 = document.querySelector('h3');
-let h4 = document.querySelector('#team');
+let team1Serves = document.querySelector('#team1Serves');
+let team2Serves = document.querySelector('#team2Serves');
 
 let turn = 0;
 let team1 = ['', ''];
@@ -55,7 +56,8 @@ for (let i = 0; i < radios.length; i++) {
     radios[i].addEventListener('click', function() {
         // When a radio button is clicked, update firstServer to the id of the corresponding text field
         firstServe = document.getElementById(`text${i+1}`).value;
-        h4.textContent = `${firstServe}`;
+        team1Serves.textContent = `${firstServe}`;
+        team2Serves.textContent = `${firstServe}`;
         if (i === 0 || i === 2) {
             turn = 1;
             if (i === 0) {
@@ -84,13 +86,14 @@ elements.forEach(function(element) {
             countOne++;
             servesOrder()
             turn = 1;
-            h4.textContent = `${team1[(team1Index) % 2]}`;
+            team1Serves.textContent = `${team1[(team1Index) % 2]}`;
             ScoreDispOne.textContent = `${countOne}`;
+            checkScore()
         } else {
             countOne++;
             ScoreDispOne.textContent = `${countOne}`;
             turn = 1;
-            h4.textContent = `${team1[(team1Index) % 2]}`;
+            team1Serves.textContent = `${team1[(team1Index) % 2]}`;
             checkScore()
             servesOrder()
         }
@@ -114,14 +117,15 @@ teamTwoUp.forEach(function(el) {
             countTwo++;
             servesOrder()
             turn = 2;
-            h4.textContent = `${team2[(team2Index) % 2]}`;
+            team2Serves.textContent = `${team2[(team2Index) % 2]}`;
             ScoreDispTwo.textContent = `${countTwo}`;
             console.log(`after change ${team1[(team1Index) % 2]}`);
+            checkScore()
         } else {
             countTwo++;
             ScoreDispTwo.textContent = `${countTwo}`;
             turn = 2;
-            h4.textContent = `${team2[(team2Index) % 2]}`;
+            team2Serves.textContent = `${team2[(team2Index) % 2]}`;
             checkScore()
             servesOrder()
             console.log(`no change ${team1[(team1Index) % 2]}`);
@@ -150,9 +154,12 @@ reset.addEventListener('click', function() {
 
 //Check score
 function checkScore() {
+    let Change = countOne + countTwo;
     if (countOne == selectedValue || countTwo == selectedValue) {
         teamOneUp.disabled = true;
         teamTwoUp.disabled = true;
+    } else if (Change % (selectedValue / 3) == 0) {
+        alert('change!');
     }
 }
 
@@ -179,14 +186,14 @@ function servesOrder() {
             document.getElementById('buttonP3').addEventListener('click', function() {
                 turn = 1;
                 team1Index = 1;
-                h4.textContent = `${team1[(team1Index)]}`;
+                team1Serves.textContent = `${team1[(team1Index)]}`;
                 modal.hide();
             });
 
             document.getElementById('buttonP1').addEventListener('click', function() {
                 turn = 1;
                 team1Index = 0;
-                h4.textContent = `${team1[(team1Index)]}`;
+                team1Serves.textContent = `${team1[(team1Index)]}`;
                 modal.hide();
 
             });
@@ -209,13 +216,13 @@ function servesOrder() {
             document.getElementById('buttonP4').addEventListener('click', function() {
                 turn = 2;
                 team2Index = 1;
-                h4.textContent = `${team2[(team2Index)]}`;
+                team2Serves.textContent = `${team2[(team2Index)]}`;
                 modal.hide();
             });
             document.getElementById('buttonP2').addEventListener('click', function() {
                 turn = 2;
                 team2Index = 0;
-                h4.textContent = `${team2[(team2Index)]}`;
+                team2Serves.textContent = `${team2[(team2Index)]}`;
                 modal.hide();
             });
 
@@ -246,28 +253,28 @@ start.addEventListener('click', function() {
     document.getElementById('button1').addEventListener('click', function() {
         turn = 1;
         team1Index = 0;
-        h4.textContent = `${team1[(team1Index)]}`;
+        team1Serves.textContent = `${team1[(team1Index)]}`;
         modal.hide();
     });
 
     document.getElementById('button2').addEventListener('click', function() {
         turn = 2;
         team2Index = 0;
-        h4.textContent = `${team2[(team2Index)]}`;
+        team2Serves.textContent = `${team2[(team2Index)]}`;
         modal.hide();
     });
 
     document.getElementById('button3').addEventListener('click', function() {
         turn = 1;
         team1Index = 1;
-        h4.textContent = `${team1[(team1Index)]}`;
+        team1Serves.textContent = `${team1[(team1Index)]}`;
         modal.hide();
     });
 
     document.getElementById('button4').addEventListener('click', function() {
         turn = 2;
         team2Index = 1;
-        h4.textContent = `${team2[(team2Index)]}`;
+        team2Serves.textContent = `${team2[(team2Index)]}`;
         modal.hide();
     });
 
