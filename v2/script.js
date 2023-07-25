@@ -1,8 +1,8 @@
 //hide before start
-// var beforeStart = document.querySelectorAll('.beforeStart');
-// beforeStart.forEach(function(beforeStart) {
-//     beforeStart.style.display = 'none';
-// });
+var beforeStart = document.querySelectorAll('.beforeStart');
+beforeStart.forEach(function(beforeStart) {
+    beforeStart.style.display = 'none';
+});
 
 let changedServes = false;
 
