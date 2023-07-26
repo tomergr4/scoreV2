@@ -13,11 +13,11 @@
 
 /* Add this CSS to set a fixed height for all the buttons with the class "btn-equal-height" */
 
-.btn {
+
+/* .btn {
     height: 40px;
     /* Change this to the height you want */
-}
 
-.d-flex {
+*/ .d-flex {
     align-items: center;
 }
