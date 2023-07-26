@@ -1,13 +1,17 @@
 #ScoreDispOne {
-    font-size: 25vh;
+    font-size: 40vh;
     cursor: pointer;
     line-height: 100%;
 }
 
 #ScoreDispTwo {
-    font-size: 25vh;
+    font-size: 40vh;
     cursor: pointer;
     line-height: 100%;
+}
+
+.serversTitle {
+    font-size: 15vh;
 }
 
 
@@ -18,6 +22,11 @@
     height: 40px;
     /* Change this to the height you want */
 
-*/ .d-flex {
+.d-flex {
     align-items: center;
+}
+
+.large-font {
+    font-size: 28px;
+    /* Or whatever size you want */
 }

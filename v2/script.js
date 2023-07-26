@@ -87,6 +87,7 @@ elements.forEach(function(element) {
             servesOrder()
             turn = 1;
             team1Serves.textContent = `${team1[(team1Index) % 2]}`;
+            team2Serves.textContent = `.`;
             ScoreDispOne.textContent = `${countOne}`;
             checkScore()
         } else {
@@ -94,6 +95,7 @@ elements.forEach(function(element) {
             ScoreDispOne.textContent = `${countOne}`;
             turn = 1;
             team1Serves.textContent = `${team1[(team1Index) % 2]}`;
+            team2Serves.textContent = `.`;
             checkScore()
             servesOrder()
         }
@@ -118,14 +120,15 @@ teamTwoUp.forEach(function(el) {
             servesOrder()
             turn = 2;
             team2Serves.textContent = `${team2[(team2Index) % 2]}`;
+            team1Serves.textContent = `.`;
             ScoreDispTwo.textContent = `${countTwo}`;
-            console.log(`after change ${team1[(team1Index) % 2]}`);
             checkScore()
         } else {
             countTwo++;
             ScoreDispTwo.textContent = `${countTwo}`;
             turn = 2;
             team2Serves.textContent = `${team2[(team2Index) % 2]}`;
+            team1Serves.textContent = `.`;
             checkScore()
             servesOrder()
             console.log(`no change ${team1[(team1Index) % 2]}`);
