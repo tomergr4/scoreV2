@@ -1,9 +1,23 @@
 #ScoreDispOne {
-    font-size: 40vh;
+    font-size: 25vh;
     cursor: pointer;
+    line-height: 100%;
 }
 
 #ScoreDispTwo {
-    font-size: 40vh;
+    font-size: 25vh;
     cursor: pointer;
+    line-height: 100%;
+}
+
+
+/* Add this CSS to set a fixed height for all the buttons with the class "btn-equal-height" */
+
+.btn {
+    height: 40px;
+    /* Change this to the height you want */
+}
+
+.d-flex {
+    align-items: center;
 }

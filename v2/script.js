@@ -1,8 +1,8 @@
 //hide before start
-// var beforeStart = document.querySelectorAll('.beforeStart');
-// beforeStart.forEach(function(beforeStart) {
-//     beforeStart.style.display = 'none';
-// });
+var beforeStart = document.querySelectorAll('.beforeStart');
+beforeStart.forEach(function(beforeStart) {
+    beforeStart.style.display = 'none';
+});
 
 let changedServes = false;
 
@@ -141,27 +141,31 @@ teamTwoDown.addEventListener('click', function() {
 });
 
 // Reset button
-const reset = document.querySelector('#reset');
-reset.addEventListener('click', function() {
+reset.addEventListener('click', function(event) {
+    event.preventDefault();
     countOne = 0;
     countTwo = 0;
     ScoreDispOne.textContent = `${countOne}`;
     ScoreDispTwo.textContent = `${countTwo}`;
-    teamOneUp.disabled = false;
-    teamTwoUp.disabled = false;
     location.reload();
 });
+
 
 //Check score
 function checkScore() {
     let Change = countOne + countTwo;
     if (countOne == selectedValue || countTwo == selectedValue) {
-        teamOneUp.disabled = true;
-        teamTwoUp.disabled = true;
+        alert('Game Over');
     } else if (Change % (selectedValue / 3) == 0) {
-        alert('change!');
+        var audio = new Audio('../sounds/Notification8-changeSides.wav');
+        audio.onended = function() {
+            alert('Switch sides');
+        }
+        audio.play();
     }
 }
+
+
 
 
 // ----------------//----------------//
