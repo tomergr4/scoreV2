@@ -25,10 +25,7 @@ let team2Index = 0;
 // Get the players names
 document.getElementById('start').addEventListener('blur', function(e) {
     e.preventDefault();
-    team1[0] = document.getElementById('text1').value;
-    team2[0] = document.getElementById('text2').value;
-    team1[1] = document.getElementById('text3').value;
-    team2[1] = document.getElementById('text4').value;
+    whoIsFirst()
 });
 
 // Playing until buttons
@@ -131,7 +128,6 @@ teamTwoUp.forEach(function(el) {
             team1Serves.textContent = `.`;
             checkScore()
             servesOrder()
-            console.log(`no change ${team1[(team1Index) % 2]}`);
         }
     });
 });
@@ -176,7 +172,7 @@ function checkScore() {
 function servesOrder() {
     //player 1 team 1 starts (1)
     if (turn == 2 && changedServes == false) {
-        if (countOne == 1) {
+        if (countOne >= 1) {
             let text3Value = document.getElementById('text3').value;
             let text1Value = document.getElementById('text1').value;
             changedServes = true;
@@ -202,11 +198,10 @@ function servesOrder() {
                 team1Index = 0;
                 team1Serves.textContent = `${team1[(team1Index)]}`;
                 modal.hide();
-
             });
         }
     } else if (turn == 1 && changedServes == false) {
-        if (countTwo == 1) {
+        if (countTwo >= 1) {
             let text4Value = document.getElementById('text4').value;
             let text2Value = document.getElementById('text2').value;
             changedServes = true;
@@ -241,58 +236,7 @@ function servesOrder() {
 //first serve
 const start = document.querySelector('#start');
 start.addEventListener('click', function() {
-    let text1Value = document.getElementById('text1').value;
-    let text2Value = document.getElementById('text2').value;
-    let text3Value = document.getElementById('text3').value;
-    let text4Value = document.getElementById('text4').value;
-
-    // Update the text of buttons
-    document.getElementById('button1').textContent = text1Value;
-    document.getElementById('button2').textContent = text2Value;
-    document.getElementById('button3').textContent = text3Value;
-    document.getElementById('button4').textContent = text4Value;
-
-    var modalEl = document.getElementById('firstPlayerServe');
-    var modal = new bootstrap.Modal(modalEl);
-    modal.show();
-
-    // Adding event listeners to the new buttons
-    document.getElementById('button1').addEventListener('click', function() {
-        turn = 1;
-        team1Index = 0;
-        team1Serves.textContent = `${team1[(team1Index)]}`;
-        modal.hide();
-    });
-
-    document.getElementById('button2').addEventListener('click', function() {
-        turn = 2;
-        team2Index = 0;
-        team2Serves.textContent = `${team2[(team2Index)]}`;
-        modal.hide();
-    });
-
-    document.getElementById('button3').addEventListener('click', function() {
-        turn = 1;
-        team1Index = 1;
-        team1Serves.textContent = `${team1[(team1Index)]}`;
-        modal.hide();
-    });
-
-    document.getElementById('button4').addEventListener('click', function() {
-        turn = 2;
-        team2Index = 1;
-        team2Serves.textContent = `${team2[(team2Index)]}`;
-        modal.hide();
-    });
-
-    var beforeStart = document.querySelectorAll('.beforeStart');
-    beforeStart.forEach(function(beforeStart) {
-        beforeStart.style.display = '';
-
-        var startButton = document.getElementById('start')
-        startButton.style.display = 'none';
-
-    });
+    whoIsFirst()
 });
 
 // Names validation
@@ -338,3 +282,180 @@ document.addEventListener('touchstart', function(event) {
     }
     lastTouchEnd = now;
 }, false);
+
+function Manually() {
+
+}
+
+const manually = document.querySelector('#manually');
+manually.addEventListener('click', function() {
+    countOne = prompt("Please enter the score for team 1", "0");
+    if (countOne != null) {
+        // Convert the input to an integer.
+        countOne = (countOne);
+
+        // Check if the conversion was successful. If the input wasn't a number, countOne will be NaN.
+        if (isNaN(countOne)) {
+            alert("You didn't enter a number. Enter team 1 score.");
+        } else {
+            // If the conversion was successful, update the score.
+            ScoreDispOne.textContent = `${countOne}`;
+
+        }
+    }
+    countTwo = prompt("Please enter the score for team 1", "0");
+    if (countTwo != null) {
+        // Convert the input to an integer.
+        countTwo = parseInt(countTwo);
+
+        // Check if the conversion was successful. If the input wasn't a number, countOne will be NaN.
+        if (isNaN(countTwo)) {
+            alert("You didn't enter a number. Enter team 1 score.");
+        } else {
+            // If the conversion was successful, update the score.
+            ScoreDispTwo.textContent = `${countTwo}`;
+
+        }
+    }
+    whoIsFirst()
+    var beforeStart = document.querySelectorAll('.beforeStart');
+    beforeStart.forEach(function(beforeStart) {
+        beforeStart.style.display = '';
+
+        var startButton = document.getElementById('start')
+        startButton.style.display = 'none';
+
+    });
+});
+
+
+function whoIsFirst() {
+    team1[0] = document.getElementById('text1').value;
+    team2[0] = document.getElementById('text2').value;
+    team1[1] = document.getElementById('text3').value;
+    team2[1] = document.getElementById('text4').value;
+
+    let text1Value = document.getElementById('text1').value;
+    let text2Value = document.getElementById('text2').value;
+    let text3Value = document.getElementById('text3').value;
+    let text4Value = document.getElementById('text4').value;
+
+    // Update the text of buttons
+    document.getElementById('button1').textContent = text1Value;
+    document.getElementById('button2').textContent = text2Value;
+    document.getElementById('button3').textContent = text3Value;
+    document.getElementById('button4').textContent = text4Value;
+
+    var modalEl = document.getElementById('firstPlayerServe');
+    var modal = new bootstrap.Modal(modalEl);
+    modal.show();
+
+    // Adding event listeners to the new buttons
+    document.getElementById('button1').addEventListener('click', function() {
+        turn = 1;
+        team1Index = 0;
+        team1Serves.textContent = `${team1[(team1Index)]}`;
+        modal.hide();
+        console.log(turn);
+        secondServer()
+    });
+
+    document.getElementById('button2').addEventListener('click', function() {
+        turn = 2;
+        team2Index = 0;
+        team2Serves.textContent = `${team2[(team2Index)]}`;
+        modal.hide();
+        console.log(turn);
+        secondServer()
+    });
+
+    document.getElementById('button3').addEventListener('click', function() {
+        turn = 1;
+        team1Index = 1;
+        team1Serves.textContent = `${team1[(team1Index)]}`;
+        modal.hide();
+        console.log(turn);
+        secondServer()
+    });
+
+    document.getElementById('button4').addEventListener('click', function() {
+        turn = 2;
+        team2Index = 1;
+        team2Serves.textContent = `${team2[(team2Index)]}`;
+        modal.hide();
+        console.log(turn);
+        secondServer()
+    });
+    var beforeStart = document.querySelectorAll('.beforeStart');
+    beforeStart.forEach(function(beforeStart) {
+        beforeStart.style.display = '';
+
+        var startButton = document.getElementById('start')
+        startButton.style.display = 'none';
+    });
+}
+
+
+
+
+
+function secondServer() {
+    if (turn == 2 && changedServes == false) {
+        let text3Value = document.getElementById('text3').value;
+        let text1Value = document.getElementById('text1').value;
+        changedServes = true;
+
+        // Update the text of buttons
+        document.getElementById('buttonP1').textContent = text1Value;
+        document.getElementById('buttonP3').textContent = text3Value;
+
+        var modalEl = document.getElementById('firstTeamServe');
+        var modal = new bootstrap.Modal(modalEl);
+        modal.show();
+
+        // Adding event listeners to the new buttons
+        document.getElementById('buttonP3').addEventListener('click', function() {
+            turn = 1;
+            team1Index = 1;
+            team1Serves.textContent = `${team1[(team1Index)]}`;
+            modal.hide();
+        });
+
+        document.getElementById('buttonP1').addEventListener('click', function() {
+            turn = 1;
+            team1Index = 0;
+            team1Serves.textContent = `${team1[(team1Index)]}`;
+            modal.hide();
+
+        });
+    } else if (turn == 1 && changedServes == false) {
+        if (countTwo >= 1) {
+            let text4Value = document.getElementById('text4').value;
+            let text2Value = document.getElementById('text2').value;
+            changedServes = true;
+
+            // Update the text of buttons
+            document.getElementById('buttonP2').textContent = text2Value;
+            document.getElementById('buttonP4').textContent = text4Value;
+
+            var modalEl = document.getElementById('secondTeamServe');
+            var modal = new bootstrap.Modal(modalEl);
+            modal.show();
+
+            // Adding event listeners to the new buttons
+            document.getElementById('buttonP4').addEventListener('click', function() {
+                turn = 2;
+                team2Index = 1;
+                team2Serves.textContent = `${team2[(team2Index)]}`;
+                modal.hide();
+            });
+
+            document.getElementById('buttonP2').addEventListener('click', function() {
+                turn = 2;
+                team2Index = 0;
+                team2Serves.textContent = `${team2[(team2Index)]}`;
+                modal.hide();
+            });
+        }
+    }
+}
